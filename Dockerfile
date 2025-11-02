@@ -4,9 +4,9 @@ COPY . /app
 
 WORKDIR /app
 
-RUN --mount=type=cache,target=/root/.npm-production npm ci --ignore-scripts --omit-dev
+RUN --mount=type=cache,id=npm-production,target=/root/.npm-production npm ci --ignore-scripts --omit-dev
 
-RUN --mount=type=cache,target=/root/.npm npm run build
+RUN --mount=type=cache,id=npm,target=/root/.npm npm run build
 
 # --- Release Stage ---
 FROM node:24-alpine AS release
