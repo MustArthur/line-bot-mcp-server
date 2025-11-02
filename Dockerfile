@@ -4,9 +4,9 @@ COPY . /app
 
 WORKDIR /app
 
-RUN npm ci --only=production
-
 RUN npm install
+
+RUN npm run build
 
 # --- Release Stage ---
 FROM node:24-alpine AS release
